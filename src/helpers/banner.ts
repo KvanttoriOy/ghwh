@@ -1,3 +1,6 @@
+// used whenever a "@/*" import is used, DO NOT REMOVE
+import "module-alias/register"
+
 import { VERSION } from "@/constants"
 
 export const printBanner = () => {

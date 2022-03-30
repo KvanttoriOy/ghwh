@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// used for fixing "@/*" imports, DO NOT REMOVE
+// used whenever a "@/*" import is used, DO NOT REMOVE
 import "module-alias/register"
 
 import express from "express"

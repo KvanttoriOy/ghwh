@@ -1,3 +1,6 @@
+// used whenever a "@/*" import is used, DO NOT REMOVE
+import "module-alias/register"
+
 import { RequestHandler } from "express"
 import crypto from "crypto"
 import { Config } from "@/types/config"
