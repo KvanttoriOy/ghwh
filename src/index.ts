@@ -51,7 +51,7 @@ const start = async () => {
     }
 
     const endTime = performance.now()
-    console.log("Completed in", ~~((endTime - startTime) / 1000), "seconds")
+    console.log("Completed in", Math.round((endTime - startTime) / 1000), "seconds")
 
     res.status(200).end("success")
   })
