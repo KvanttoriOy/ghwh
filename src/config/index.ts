@@ -12,22 +12,26 @@ const DEFAULT_CONFIG: Config = {
 }
 
 export const loadConfig = async (): Promise<Config> => {
+  const defaultConfigFilePath = path.resolve(process.cwd(), "./githook.config.default.json")
   const configFilePath = path.resolve(process.cwd(), "./githook.config.json")
+
+  const defaultConfig = await readFile(defaultConfigFilePath)
+    .then((d) => JSON.parse(d.toString()) as Config)
+    .catch((err) => {
+      console.error("Could not load default config (githook.config.default.json), exiting...")
+      process.exit(1)
+    })
 
   const userConfig = await readFile(configFilePath)
     .then((d) => JSON.parse(d.toString()) as Partial<Config>)
     .catch((err) => {
-      console.log(err)
-      console.error(
-        "\nconfig.json failed to load, using default config:\n" +
-          JSON.stringify(DEFAULT_CONFIG, null, " ")
-      )
-      return DEFAULT_CONFIG as Partial<Config>
+      console.log("Could not find/parse githook.config.json, using default config...\n")
+      return {} as Partial<Config>
     })
 
-  const mergedConfig = { ...DEFAULT_CONFIG, ...userConfig }
+  const mergedConfig = { ...defaultConfig, ...userConfig }
 
-  console.log("Using config:\n", mergedConfig)
+  console.log("Config:\n", mergedConfig)
 
   return mergedConfig
 }

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import "module-alias/register" // used for fixing "@/*" imports, DO NOT REMOVE
 
 import express from "express"
