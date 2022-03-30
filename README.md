@@ -1,6 +1,6 @@
 # GitHook
 
-A minimal HTTP server that listens to GitHub webhooks and executes sequences of commands
+A minimal HTTP server that listens to GitHub webhooks and executes a sequence of commands.
 
 ## Getting started
 
