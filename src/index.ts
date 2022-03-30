@@ -14,7 +14,7 @@ const start = async () => {
   const app = express()
   const http = new Server(app)
 
-  console.log("\n-----------------------\n      GHWH v0.1.6\n-----------------------\n")
+  console.log("\n-----------------------\n      GHWH v0.1.7\n-----------------------\n")
 
   // load config.json from disk
   const config = await loadConfig()
