@@ -1,14 +1,16 @@
 {
   "name": "ghwh",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A minimal express server that executes shell commands based on GitHub webhooks",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "bin": "./dist/index.js",
+  "types": "dist/index.d.ts",
   "keywords": [
     "express",
     "typescript",
-    "nodejs"
+    "nodejs",
+    "github",
+    "webhook"
   ],
   "author": "Matias Kumpulainen",
   "license": "ISC",
