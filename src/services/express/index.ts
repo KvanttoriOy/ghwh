@@ -2,14 +2,15 @@ import express from "express"
 import { Server } from "http"
 import { verifyPostData } from "../../middleware/auth"
 import { webhookHandler } from "../../handler"
-import { printBanner } from "../../helpers/banner"
 import { Config } from "../../types/config"
+import { format } from "../../helpers/formatting"
+import { VERSION } from "../../constants"
 
 export const startServer = async (config: Config) => {
   const app = express()
   const http = new Server(app)
 
-  printBanner()
+  console.log(format.banner(`@kvanttori/huukki ${VERSION}`))
 
   // inject config into express
   app.set("huukki-config", config)

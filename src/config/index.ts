@@ -14,11 +14,11 @@ export const loadConfig = async (args: Partial<Args>): Promise<Config> => {
   // attempt to load config file from disk
   const userConfig = await readFile(configFilePath)
     .then((data) => {
-      console.log("Found custom config!")
+      console.log("Custom config loaded!")
       return JSON.parse(data.toString()) as Partial<Config>
     })
-    .catch((err) => {
-      console.log(`Could not find '${configFilePath}'\n`)
+    .catch(() => {
+      console.log(`No custom config found in '${configFilePath}'\n`)
       return {} as Partial<Config>
     })
 

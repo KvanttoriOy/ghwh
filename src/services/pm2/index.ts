@@ -1,6 +1,6 @@
 import path from "path"
 import type { Args } from "../../types/args"
-import { asyncCommand } from "../../helpers/asyncCommand"
+import { exec } from "shelljs"
 
 /**
  * Starts the server using PM2
@@ -12,12 +12,12 @@ export const startInDaemonMode = async (args: Partial<Args>) => {
   if (typeof args.daemon === "string") {
     switch (args.daemon) {
       case "start":
-        return await asyncCommand("pm2 start ecosystem.config.js", npxDir)
+        return exec("pm2 start ecosystem.config.js", { cwd: npxDir })
 
       case "stop":
-        return await asyncCommand("pm2 stop ecosystem.config.js", npxDir)
+        return exec("pm2 stop ecosystem.config.js", { cwd: npxDir })
     }
   }
 
-  await asyncCommand("pm2 start ecosystem.config.js", npxDir)
+  exec("pm2 start ecosystem.config.js", { cwd: npxDir })
 }
