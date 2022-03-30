@@ -6,11 +6,17 @@ import { CONFIG_FILE_NAME, DEFAULT_CONFIG } from "../constants"
 
 export const loadConfig = async (args: Partial<Args>): Promise<Config> => {
   // assume that the config file is in the same folder where the server is run
-  const configFilePath = path.resolve(process.cwd(), "./", args.config ?? CONFIG_FILE_NAME)
+  const configFilePath = path.resolve(
+    process.env.INIT_CWD as string,
+    args.config ?? CONFIG_FILE_NAME
+  )
 
   // attempt to load config file from disk
   const userConfig = await readFile(configFilePath)
-    .then((d) => JSON.parse(d.toString()) as Partial<Config>)
+    .then((data) => {
+      console.log("Found custom config!")
+      return JSON.parse(data.toString()) as Partial<Config>
+    })
     .catch((err) => {
       console.log(`Could not find '${configFilePath}'\n`)
       return {} as Partial<Config>

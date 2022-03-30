@@ -7,7 +7,7 @@ import { asyncCommand } from "../../helpers/asyncCommand"
  */
 export const startInDaemonMode = async (args: Partial<Args>) => {
   // find directory where ghwh lives to get access to pm2
-  const npxDir = path.resolve(process.argv[1], "../../")
+  const npxDir = path.resolve(__dirname, "../../../")
 
   if (typeof args.daemon === "string") {
     switch (args.daemon) {
