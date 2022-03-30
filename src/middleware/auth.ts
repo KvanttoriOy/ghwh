@@ -5,8 +5,6 @@ const sigHeaderName = "X-Hub-Signature-256"
 const sigHashAlg = "sha256"
 
 export const verifyPostData = (secret: string): RequestHandler => {
-  console.log("secret:", secret)
-
   return (req, res, next) => {
     // do no validation if secret is not provided
     if (!secret || secret === "") return next()

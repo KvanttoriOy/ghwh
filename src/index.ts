@@ -11,6 +11,8 @@ const start = async () => {
   const app = express()
   const http = new Server(app)
 
+  console.log("\n----------------------\n    GitHook server\n----------------------\n")
+
   // load config.json from disk
   const config = await loadConfig()
 
@@ -33,14 +35,18 @@ const start = async () => {
       return res.status(400).end("body must be application/json")
     }
 
-    // execute commands in sequence
-    await asyncSequence(config.commands.map((s) => () => asyncExec(s, config.folder))).catch(
-      (err) => {
-        console.log("error:", err)
-      }
-    )
+    // execute configured commands in sequence
+    const result = await asyncSequence(
+      config.commands.map((s) => () => asyncExec(s, config.folder))
+    ).catch((err) => ({ err }))
 
-    res.status(200).json({ success: true })
+    // if the execution failed, fail the request
+    if (!Array.isArray(result)) {
+      console.error(result.err)
+      return res.status(500).end(result.err.toString())
+    }
+
+    res.status(200).end("success")
   })
 
   http.listen(config.port, () => console.log("listening on port", config.port))

@@ -8,11 +8,11 @@ const DEFAULT_CONFIG: Config = {
   folder: "./",
   branch: "master",
   secret: "",
-  commands: ["git pull"],
+  commands: ["git pull", "npm i", "npm run build", "npm start"],
 }
 
 export const loadConfig = async (): Promise<Config> => {
-  const configFilePath = path.resolve(process.cwd(), "./config.json")
+  const configFilePath = path.resolve(process.cwd(), "./githook.config.json")
 
   const userConfig = await readFile(configFilePath)
     .then((d) => JSON.parse(d.toString()) as Partial<Config>)
@@ -27,7 +27,7 @@ export const loadConfig = async (): Promise<Config> => {
 
   const mergedConfig = { ...DEFAULT_CONFIG, ...userConfig }
 
-  console.log("Using config:\n", JSON.stringify(mergedConfig, null, "\t"))
+  console.log("Using config:\n", mergedConfig)
 
   return mergedConfig
 }
