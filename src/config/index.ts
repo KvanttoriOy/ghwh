@@ -4,13 +4,14 @@ import path from "path"
 
 const DEFAULT_CONFIG: Config = {
   port: 8080,
-  path: "/",
+  route: "/",
+  folder: "./",
   branch: "master",
-  secret: "test",
+  secret: "",
   commands: ["git pull"],
 }
 
-export const readConfig = async (): Promise<Config> => {
+export const loadConfig = async (): Promise<Config> => {
   const configFilePath = path.resolve(process.cwd(), "./config.json")
 
   const userConfig = await readFile(configFilePath)
@@ -26,7 +27,7 @@ export const readConfig = async (): Promise<Config> => {
 
   const mergedConfig = { ...DEFAULT_CONFIG, ...userConfig }
 
-  console.log("using the following config:", JSON.stringify(mergedConfig, null, " "))
+  console.log("Using config:\n", JSON.stringify(mergedConfig, null, "\t"))
 
   return mergedConfig
 }

@@ -1,6 +1,7 @@
 export type Config = {
   port: number
-  path: string
+  route: string
+  folder: string
   branch: string
   commands: string[]
   secret: string
