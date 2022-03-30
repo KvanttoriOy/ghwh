@@ -28,8 +28,8 @@ The server uses the following default configuration:
   // only execute commands if push was to 'master' branch
   "branch": "master",
 
-  // use no secret validation with the webhook (unsafe)
-  "secret": "",
+  // Secret value configured in the GitHub webhook (use "" to disable validation)
+  "secret": "changeme",
 
   // commands to execute (in order) when a webhook is received
   "commands": ["git pull", "npm i", "npm run build", "npm start"]
@@ -42,10 +42,18 @@ You can override individual settings by creating a JSON file at the repository r
 // ghwh.config.json
 {
   "folder": "/home/my-user/my-repo", // custom folder
-  "secret": "mysecret", // use a secret
+  "secret": "my-secret", // Secret value to use for verification
   "commands": ["git pull", "npm start"] // do these commands instead of the default ones
 }
 ```
+
+### GitHub webhook
+
+The GitHub webhook should have `application/json` as its content type. With the configurations defined above, and an example IP of `localhost`, the GitHub webhook URL should look like this: `http://localhost:8080/`, and the secret should be `mysecret`.
+
+## Notes
+
+If you're running `git pull` as a command, make sure that git has the credentials saved so that it won't ask for them every time. You can make Git store the username and password with the following command: `git config --global credential.helper store`. Note that you'll need to input the credentials once after this command to save them.
 
 ## Development
 

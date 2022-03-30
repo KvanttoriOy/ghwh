@@ -1,6 +1,6 @@
 {
   "name": "@kvanttori/ghwh",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A minimal express server that executes shell commands based on GitHub webhooks",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
@@ -38,8 +38,8 @@
     "module-alias": "^2.2.2"
   },
   "engines": {
-    "node": "16.13.2",
-    "npm": "8.1.2"
+    "node": "^16.13.2",
+    "npm": "^8.1.2"
   },
   "_moduleAliases": {
     "@": "dist"
