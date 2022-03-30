@@ -1,15 +1,15 @@
-import { exec } from "child_process"
+import { exec } from "shelljs"
 
 /**
- * Promisifies the `child_process.exec` function
+ * Simple async wrapper function around the `shelljs.exec` function.
  */
-export const asyncExec = async (command: string, dir: string) => {
+export const asyncCommand = async (command: string, dir?: string) => {
   return new Promise((resolve, reject) => {
-    console.log(`Executing: "${command}"`)
+    console.log(`\n\n------- [${command}] -------\n`)
 
-    exec(command, { cwd: dir }, (err, stdout) => {
-      if (err) reject(err)
-      resolve(stdout)
-    })
+    const cmd = exec(command, { cwd: dir, async: true })
+
+    cmd.on("error", (code) => reject(code))
+    cmd.on("close", (code) => resolve(code))
   })
 }

@@ -1,21 +1,12 @@
-import { Config } from "../types/config"
-import { readFile } from "fs/promises"
 import path from "path"
+import { readFile } from "fs/promises"
+import type { Config } from "../types/config"
+import type { Args } from "../types/args"
+import { CONFIG_FILE_NAME, DEFAULT_CONFIG } from "../constants"
 
-const CONFIG_FILE_NAME = "ghwh.config.json"
-
-const DEFAULT_CONFIG: Config = {
-  port: 8080,
-  route: "/",
-  folder: "./",
-  branch: "master",
-  secret: "changeme",
-  commands: ["git pull"],
-}
-
-export const loadConfig = async (): Promise<Config> => {
+export const loadConfig = async (args: Partial<Args>): Promise<Config> => {
   // assume that the config file is in the same folder where the server is run
-  const configFilePath = path.resolve(process.cwd(), "./", CONFIG_FILE_NAME)
+  const configFilePath = path.resolve(process.cwd(), "./", args.config ?? CONFIG_FILE_NAME)
 
   // attempt to load config file from disk
   const userConfig = await readFile(configFilePath)
@@ -25,9 +16,5 @@ export const loadConfig = async (): Promise<Config> => {
       return {} as Partial<Config>
     })
 
-  const mergedConfig = { ...DEFAULT_CONFIG, ...userConfig }
-
-  console.log("Config:\n", mergedConfig)
-
-  return mergedConfig
+  return { ...DEFAULT_CONFIG, ...userConfig }
 }

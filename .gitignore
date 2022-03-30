@@ -8,7 +8,9 @@
 .env
 .env.local
 .DS_Store
+*.rest
+*.http
 
 # Config file
 
-githook.config.json
+ghwh.config.json

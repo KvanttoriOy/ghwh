@@ -1,4 +1,4 @@
-import { asyncExec } from "../helpers/asyncCommand"
+import { asyncCommand } from "../helpers/asyncCommand"
 import { asyncSequence } from "../helpers/asyncSequence"
 import type { Config } from "../types/config"
 import type { RequestHandler } from "express"
@@ -26,18 +26,15 @@ export const webhookHandler: RequestHandler = async (req, res) => {
   }
 
   // notify webhook sender that webhook was received correctly
-  res.status(200).json({ message: "started" })
+  res.status(200).json({ message: "received" })
 
   // execute configured commands in sequence
   const result = await asyncSequence(
-    config.commands.map((s) => () => asyncExec(s, config.folder))
+    config.commands.map((s) => () => asyncCommand(s, config.folder))
   ).catch((err) => ({ err }))
 
   // if the execution failed, fail the request
-  if (!Array.isArray(result)) {
-    console.error(result.err)
-    return res.status(500).json({ message: result.err.toString() })
-  }
+  if (!Array.isArray(result)) console.error(result.err)
 
   const endTime = performance.now()
   console.log("Completed in", Math.round((endTime - startTime) / 1000), "seconds")

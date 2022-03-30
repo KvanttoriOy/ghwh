@@ -11,12 +11,11 @@ export const asyncSequence = async <T>(list: (() => Promise<T>)[]): Promise<T[]>
           failed = true
           reject(err)
         })
-        .then((stdout) => {
+        .then((result) => {
           // do not execute next command if previous failed
           if (failed) return
 
-          console.log(stdout)
-          results.push(stdout)
+          results.push(result)
           n++
 
           if (n < list.length) {

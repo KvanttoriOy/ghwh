@@ -11,10 +11,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "outDir": "dist",
-    "declaration": true,
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "declaration": true
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts"],
   "exclude": ["node_modules"]

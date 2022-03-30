@@ -1,31 +1,21 @@
 #!/usr/bin/env node
 
-import express from "express"
-import { Server } from "http"
+import { startServer } from "./services/express"
+import { processArgs } from "./config/args"
 import { loadConfig } from "./config"
-import { verifyPostData } from "./middleware/auth"
-import { webhookHandler } from "./handler"
-import { printBanner } from "./helpers/banner"
+import { startInDaemonMode } from "./services/pm2"
 
-const start = async () => {
-  const app = express()
-  const http = new Server(app)
-
-  printBanner()
+const init = async () => {
+  const args = processArgs()
 
   // load config from disk and inject into express
-  const config = await loadConfig()
-  app.set("ghwh-config", config)
+  const config = await loadConfig(args)
 
-  app.use(express.json())
-
-  // Listen to requests on the configured route
-  app.post(config.route, verifyPostData, webhookHandler)
-
-  // Start server
-  http.listen(config.port, () =>
-    console.log("Server started successfully, listening on port", config.port)
-  )
+  if (args.daemon) {
+    await startInDaemonMode(args)
+  } else {
+    await startServer(config)
+  }
 }
 
-start()
+init()
