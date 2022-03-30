@@ -8,3 +8,7 @@
 .env
 .env.local
 .DS_Store
+
+# Config file
+
+config.json
