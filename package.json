@@ -1,8 +1,11 @@
 {
-  "name": "githook",
+  "name": "gook-server",
   "version": "1.0.0",
   "description": "Minimal GitHub webhook listener",
   "main": "index.js",
+  "bin": {
+    "gook-server": "./dist/index.js"
+  },
   "keywords": [
     "express",
     "typescript",
@@ -16,7 +19,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "init": "tsc --init",
     "dev": "tsc-watch --onSuccess \"node dist\"",
-    "tunnel": "ngrok http 8080"
+    "tunnel": "ngrok http 8080",
+    "prepare": "tsc"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

@@ -1,8 +1,0 @@
-{
-  "port": 8080,
-  "route": "/",
-  "folder": "./",
-  "branch": "master",
-  "secret": "changeme",
-  "commands": ["git pull", "npm i", "npm run build", "npm start"]
-}

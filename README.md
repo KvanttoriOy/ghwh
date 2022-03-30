@@ -1,6 +1,8 @@
-# GitHook
+# Gook Server
 
-A minimal HTTP server that listens to GitHub webhooks and executes a sequence of commands.
+A minimal express server that listens to GitHub webhooks and executes a sequence of commands.
+
+Run it using `npx gook-server`, or by cloning the repository, building it and running it.
 
 ## Getting started
 
@@ -23,7 +25,7 @@ The server uses the following default configuration:
   // listen to requests on http://localhost:8080/
   "route": "/",
 
-  // execute commands in the current folder (relative to the githook server)
+  // execute commands in the current folder (relative to the githook server or where you ran `npx gook-server`)
   // You can put relative and absolute paths here
   "folder": "./",
 
@@ -38,13 +40,18 @@ The server uses the following default configuration:
 }
 ```
 
-You can override individual settings by creating a JSON file at the repository root called `githook.config.json`, containing the fields that you want to override:
+You can override individual settings by creating a JSON file at the repository root called `gook.config.json`, containing the fields that you want to override:
 
 ```jsonc
-// githook.config.json
+// gook.config.json
 {
   "folder": "/home/my-user/my-repo", // custom folder
   "secret": "mysecret", // use a secret
   "commands": ["git pull", "npm start"] // do these commands instead of the default ones
 }
 ```
+
+## Run using `npx`
+
+The absolute quickest way to run gook-server is by running `npx gook-server` in a folder. This way you don't need to install the dependencies and compile the server before launch.
+You can still configure the server by creating a `gook.config.json` file in the folder where you run `npx gook-server`, same as in the [Configuration](#configuration) section.
