@@ -14,7 +14,7 @@ const start = async () => {
   const app = express()
   const http = new Server(app)
 
-  console.log("\n----------------------\n    GitHook server\n----------------------\n")
+  console.log("\n-----------------------\n      GHWH v0.1.2\n-----------------------\n")
 
   // load config.json from disk
   const config = await loadConfig()
