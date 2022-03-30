@@ -1,4 +1,4 @@
-# GHWH
+# @kvanttori/ghwh
 
 A minimal express server that executes shell commands based on GitHub webhooks.
 
@@ -6,8 +6,8 @@ A minimal express server that executes shell commands based on GitHub webhooks.
 
 ## Quick start
 
-The absolute quickest way to run the server is by running `npx ghwh` in a folder. This way you don't need to install the dependencies and compile the server before launch.
-You can still configure the server by creating a `ghwh.config.json` file in the folder where you run `npx ghwh`, same as in the [Configuration](#configuration) section.
+The absolute quickest way to run the server is by running `npx @kvanttori/ghwh` in a folder. This way you don't need to install the dependencies and compile the server before launch.
+You can still configure the server by creating a `ghwh.config.json` file in the folder where you run the `npx @kvanttori/ghwh` command, same as in the [Configuration](#configuration) section.
 
 ## Configuration
 
