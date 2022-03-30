@@ -21,7 +21,7 @@ export const loadConfig = async (): Promise<Config> => {
   const userConfig = await readFile(configFilePath)
     .then((d) => JSON.parse(d.toString()) as Partial<Config>)
     .catch((err) => {
-      console.log(`Failed to load '${configFilePath}', using default config...\n`)
+      console.log(`Could not find '${configFilePath}'\n`)
       return {} as Partial<Config>
     })
 
