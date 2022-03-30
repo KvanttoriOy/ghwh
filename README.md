@@ -1,8 +1,6 @@
 # GHWH
 
-A minimal express server that listens to GitHub webhooks and executes a sequence of commands.
-
-Run it using `npx ghwh`, or by cloning the repository, building it and running it.
+A minimal express server that executes shell commands based on GitHub webhooks.
 
 🚧 This package is in its alpha stage, so don't expect it to work flawlessly.
 
