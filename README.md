@@ -45,11 +45,12 @@ The server uses the following default configuration:
   // listen to requests on port 8080
   "port": 8080,
 
-  // listen to requests on http://localhost:8080/
+  // What path to mount the webhook listener route. This must be a relative path.
+  // Example: "/webhook" -> "http://localhost:8080/webhook"
   "route": "/",
 
   // execute commands in the current folder (relative to where you ran `npx @kvanttori/huukki`)
-  // You can put relative and absolute paths here
+  // You can put both relative and absolute paths here (e.g. "../" and "/home/user/my-folder")
   "folder": "./",
 
   // only execute commands if push was to 'master' branch
@@ -63,7 +64,9 @@ The server uses the following default configuration:
 }
 ```
 
-You can override individual settings by creating a JSON file at the repository root called `huukki.config.json`, containing the fields that you want to override:
+You can override individual settings by creating a JSON file called `huukki.config.json` in the folder where you run the npx command.
+
+The file should contain the fields that you want to override, fields that you leave out will use the values defined in the default config above.
 
 ```jsonc
 // huukki.config.json
