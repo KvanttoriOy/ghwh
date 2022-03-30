@@ -30,13 +30,13 @@ const start = async () => {
     // Check that request is to the right branch
     if (payload.ref !== `refs/heads/${config.branch}`) {
       console.log(`Push was not to ${config.branch}, ignoring...`)
-      return res.status(200).end()
+      return res.status(200).json({ message: `push was not to ${config.branch}, ignoring...` })
     }
 
     // check that request body is JSON
     if (req.headers["content-type"] !== "application/json") {
       console.error("Request body is not in JSON format, ignoring...")
-      return res.status(400).end("body must be application/json")
+      return res.status(400).json({ message: "body must be application/json" })
     }
 
     // execute configured commands in sequence
@@ -47,13 +47,13 @@ const start = async () => {
     // if the execution failed, fail the request
     if (!Array.isArray(result)) {
       console.error(result.err)
-      return res.status(500).end(result.err.toString())
+      return res.status(500).json({ message: result.err.toString() })
     }
 
     const endTime = performance.now()
     console.log("Completed in", Math.round((endTime - startTime) / 1000), "seconds")
 
-    res.status(200).end("success")
+    res.status(200).json({ message: "completed" })
   })
 
   http.listen(config.port, () => console.log("listening on port", config.port))
