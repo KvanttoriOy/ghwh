@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "ghwh",
+      name: "@kvanttori/huukki",
       script: "dist/index.js",
     },
   ],

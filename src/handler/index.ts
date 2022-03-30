@@ -5,7 +5,7 @@ import type { RequestHandler } from "express"
 import { performance } from "perf_hooks"
 
 export const webhookHandler: RequestHandler = async (req, res) => {
-  const config = req.app.get("ghwh-config") as Config
+  const config = req.app.get("huukki-config") as Config
 
   const payload = req.body
 

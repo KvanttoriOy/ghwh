@@ -12,7 +12,7 @@ const sigHashAlg = "sha256"
  * @see https://gist.github.com/stigok/57d075c1cf2a609cb758898c0b202428
  */
 export const verifyPostData: RequestHandler = (req, res, next) => {
-  const { secret } = req.app.get("ghwh-config") as Config
+  const { secret } = req.app.get("huukki-config") as Config
 
   // pass without validation if secret is not defined in config
   if (!secret || secret === "") return next()

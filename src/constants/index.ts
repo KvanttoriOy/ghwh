@@ -1,9 +1,9 @@
 import { Config } from "../types/config"
 
 // must match the one in package.json
-export const VERSION = "0.2.3"
+export const VERSION = "0.2.4"
 
-export const CONFIG_FILE_NAME = "ghwh.config.json"
+export const CONFIG_FILE_NAME = "huukki.config.json"
 
 export const DEFAULT_CONFIG: Config = {
   port: 8080,

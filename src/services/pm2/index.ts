@@ -6,7 +6,7 @@ import { asyncCommand } from "../../helpers/asyncCommand"
  * Starts the server using PM2
  */
 export const startInDaemonMode = async (args: Partial<Args>) => {
-  // find directory where ghwh lives to get access to pm2
+  // find directory where huukki lives to get access to pm2
   const npxDir = path.resolve(__dirname, "../../../")
 
   if (typeof args.daemon === "string") {

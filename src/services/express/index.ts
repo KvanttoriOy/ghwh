@@ -12,7 +12,7 @@ export const startServer = async (config: Config) => {
   printBanner()
 
   // inject config into express
-  app.set("ghwh-config", config)
+  app.set("huukki-config", config)
 
   app.use(express.json())
 
