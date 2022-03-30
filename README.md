@@ -4,14 +4,12 @@ A minimal express server that listens to GitHub webhooks and executes a sequence
 
 Run it using `npx gook-server`, or by cloning the repository, building it and running it.
 
-## Getting started
+🚧 This package is in its alpha stage, so don't expect it to work flawlessly.
 
-First install the dependencies and build the server:
+## Quick start `npx`
 
-- `npm i`
-- `npm run build`
-
-And to start the server from now on, simply run `npm start`.
+The absolute quickest way to run gook-server is by running `npx gook-server` in a folder. This way you don't need to install the dependencies and compile the server before launch.
+You can still configure the server by creating a `gook.config.json` file in the folder where you run `npx gook-server`, same as in the [Configuration](#configuration) section.
 
 ## Configuration
 
@@ -51,7 +49,13 @@ You can override individual settings by creating a JSON file at the repository r
 }
 ```
 
-## Run using `npx`
+## Development
 
-The absolute quickest way to run gook-server is by running `npx gook-server` in a folder. This way you don't need to install the dependencies and compile the server before launch.
-You can still configure the server by creating a `gook.config.json` file in the folder where you run `npx gook-server`, same as in the [Configuration](#configuration) section.
+First install the dependencies and build the server:
+
+- `npm i`
+
+And to start the server in dev mode, simply run `npm run dev`.
+
+To build a production version, simply run `npm run build`.
+This will create a `dist` folder with the built server inside, which can be run with `npm start`

@@ -11,6 +11,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "outDir": "dist",
+    "declaration": true,
     "paths": {
       "@/*": ["src/*"]
     }
