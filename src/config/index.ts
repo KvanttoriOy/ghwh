@@ -2,7 +2,7 @@ import { Config } from "@/types/config"
 import { readFile } from "fs/promises"
 import path from "path"
 
-const CONFIG_FILE_NAME = "gook.config.js"
+const CONFIG_FILE_NAME = "ghwh.config.js"
 
 const DEFAULT_CONFIG: Config = {
   port: 8080,

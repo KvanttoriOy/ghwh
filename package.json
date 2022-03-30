@@ -1,12 +1,10 @@
 {
-  "name": "gook-server",
+  "name": "ghwh",
   "version": "0.1.1",
   "description": "Minimal GitHub webhook listener",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "bin": {
-    "gook-server": "./dist/index.js"
-  },
+  "bin": "./dist/index.js",
   "keywords": [
     "express",
     "typescript",
