@@ -14,6 +14,8 @@ const start = async () => {
 
   // Listen to requests on the configured path
   app.get(config.path, (req, res) => {
+    console.log("got request:", req.body)
+
     if (req.method !== "POST") {
       return res.status(405).end("method not allowed")
     }
