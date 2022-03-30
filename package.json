@@ -1,0 +1,40 @@
+{
+  "name": "ts-express-boilerplate",
+  "version": "1.0.0",
+  "description": "Express application skeleton with TypeScript",
+  "main": "index.js",
+  "keywords": [
+    "express",
+    "typescript",
+    "nodejs"
+  ],
+  "author": "Matias Kumpulainen",
+  "license": "ISC",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "tsc --init",
+    "dev": "tsc-watch --onSuccess \"node dist\""
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.17",
+    "prettier": "^2.5.1",
+    "tsc-watch": "^4.6.0",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "module-alias": "^2.2.2"
+  },
+  "engines": {
+    "node": "16.13.2",
+    "npm": "8.1.2"
+  },
+  "_moduleAliases": {
+    "@": "dist"
+  }
+}
