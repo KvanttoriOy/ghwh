@@ -22,7 +22,8 @@
     "dev": "tsc-watch --onSuccess \"node dist\"",
     "tunnel": "ngrok http 8080",
     "prepare": "tsc",
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "publish-kvanttori": "npm publish --scope=kvanttori --access public"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
