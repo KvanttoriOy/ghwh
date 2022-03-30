@@ -6,7 +6,7 @@ Run it using `npx ghwh`, or by cloning the repository, building it and running i
 
 🚧 This package is in its alpha stage, so don't expect it to work flawlessly.
 
-## Quick start `npx`
+## Quick start
 
 The absolute quickest way to run the server is by running `npx ghwh` in a folder. This way you don't need to install the dependencies and compile the server before launch.
 You can still configure the server by creating a `ghwh.config.json` file in the folder where you run `npx ghwh`, same as in the [Configuration](#configuration) section.
