@@ -1,9 +1,6 @@
-// used whenever a "@/*" import is used, DO NOT REMOVE
-import "module-alias/register"
-
-import { asyncExec } from "@/helpers/asyncCommand"
-import { asyncSequence } from "@/helpers/asyncSequence"
-import type { Config } from "@/types/config"
+import { asyncExec } from "../helpers/asyncCommand"
+import { asyncSequence } from "../helpers/asyncSequence"
+import type { Config } from "../types/config"
 import type { RequestHandler } from "express"
 import { performance } from "perf_hooks"
 

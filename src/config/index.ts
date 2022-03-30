@@ -1,7 +1,4 @@
-// used whenever a "@/*" import is used, DO NOT REMOVE
-import "module-alias/register"
-
-import { Config } from "@/types/config"
+import { Config } from "../types/config"
 import { readFile } from "fs/promises"
 import path from "path"
 

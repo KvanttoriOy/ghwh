@@ -1,9 +1,6 @@
-// used whenever a "@/*" import is used, DO NOT REMOVE
-import "module-alias/register"
-
 import { RequestHandler } from "express"
 import crypto from "crypto"
-import { Config } from "@/types/config"
+import { Config } from "../types/config"
 
 const sigHeaderName = "X-Hub-Signature-256"
 const sigHashAlg = "sha256"

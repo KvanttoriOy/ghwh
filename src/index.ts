@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-// used whenever a "@/*" import is used, DO NOT REMOVE
-import "module-alias/register"
-
 import express from "express"
 import { Server } from "http"
 import { loadConfig } from "./config"
