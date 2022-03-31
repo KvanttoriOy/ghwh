@@ -1,7 +1,7 @@
 import { Config } from "../types/config"
 
 // must match the one in package.json
-export const VERSION = "0.2.7"
+export const VERSION = "0.2.8"
 
 export const CONFIG_FILE_NAME = "huukki.config.json"
 
