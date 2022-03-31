@@ -4,11 +4,13 @@ import { startServer } from "./services/express"
 import { processArgs } from "./config/args"
 import { loadConfig } from "./config"
 import { startInDaemonMode } from "./services/pm2"
+import { format } from "./helpers/formatting"
+import { VERSION } from "./constants"
 
 const init = async () => {
-  const args = processArgs()
+  console.log(format.banner(`@kvanttori/huukki ${VERSION}`))
 
-  // load config from disk and inject into express
+  const args = processArgs()
   const config = await loadConfig(args)
 
   if (args.daemon) {
