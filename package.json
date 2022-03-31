@@ -1,6 +1,6 @@
 {
   "name": "@kvanttori/huukki",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "A minimal express server that executes shell commands based on GitHub webhooks",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
