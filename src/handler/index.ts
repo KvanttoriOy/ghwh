@@ -4,6 +4,7 @@ import type { Config } from "../types/config"
 import type { RequestHandler } from "express"
 import { performance } from "perf_hooks"
 import path from "path"
+import { EXECUTION_FOLDER } from "../constants"
 
 export const webhookHandler: RequestHandler = async (req, res) => {
   const startTime = performance.now()
@@ -30,7 +31,7 @@ export const webhookHandler: RequestHandler = async (req, res) => {
   // Resolve the command path relative to the path where the server was run.
   // We need to use the INIT_CWD env variable because process.cwd and others report
   // wrong paths when running inside pm2.
-  const commandPath = path.resolve(process.env.INIT_CWD as string, folder)
+  const commandPath = path.resolve(EXECUTION_FOLDER, folder)
 
   // create array of async functions to execute
   const cmdArr = commands.map((s) => () => asyncCommand(s, { dir: commandPath, commands }))
