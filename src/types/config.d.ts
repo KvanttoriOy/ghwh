@@ -1,8 +1,13 @@
 export type Config = {
-  port: number
-  route: string
-  folder: string
-  branch: string
+  server: {
+    port: number
+    route: string
+    secret?: string
+  }
+  branch: Record<string, BranchOptions>
+}
+
+type BranchOptions = {
+  dir?: string
   commands: string[]
-  secret: string
 }

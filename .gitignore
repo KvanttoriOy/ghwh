@@ -11,6 +11,3 @@
 *.rest
 *.http
 
-# Config file
-
-huukki.config.json

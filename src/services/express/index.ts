@@ -14,11 +14,10 @@ export const startServer = async (config: Config) => {
   app.use(express.json())
 
   // Listen to requests on the configured route
-  app.post(config.route, verifyPostData, webhookHandler)
+  app.post(config.server.route, verifyPostData, webhookHandler)
 
   // Start server
-  http.listen(config.port, () => {
-    console.log("Using config:", config, "\n")
-    console.log("Server started successfully, listening on port", config.port)
+  http.listen(config.server.port, () => {
+    console.log("Server started successfully, listening on port", config.server.port)
   })
 }

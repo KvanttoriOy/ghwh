@@ -1,6 +1,6 @@
 {
   "name": "@kvanttori/huukki",
-  "version": "0.2.10",
+  "version": "0.3.1",
   "description": "A minimal express server that executes shell commands based on GitHub webhooks",
   "main": "dist/index.js",
   "bin": "./dist/index.js",
@@ -41,6 +41,7 @@
     "express": "^4.17.2",
     "pm2": "^5.2.0",
     "shelljs": "^0.8.5",
+    "yaml": "^2.0.0",
     "yargs": "^17.4.0"
   },
   "engines": {

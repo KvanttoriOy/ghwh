@@ -36,69 +36,84 @@ This stops the PM2 process.
 
 This will launch the server as a normal `node` process, if you don't want to use PM2 (although it is highly recommended).
 
+### Run the server without npx/npm
+
+`npx` or `npm` might give you problems on some machines. To avoid this you can run the server normally by cloning this repository, installing the dependencies using `npm i`, building the project using `npm run build`, and then running `npm start` to start the server. When running it this way, you'll need to create the `huukki.yaml` file inside the repository.
+
 ## Configuration
 
 The server uses the following default configuration:
 
-```jsonc
-{
-  // listen to requests on port 8080
-  "port": 8080,
+```yaml
+# configuration for the underlying HTTP server
+server:
+  port: 8080 # required
+  route: / # required
+  secret: changeme # optional
 
-  // What path to mount the webhook listener route. This must be a relative path.
-  // Example: "/webhook" -> "http://localhost:8080/webhook"
-  "route": "/",
-
-  // execute commands in the current folder (relative to where you ran `npx @kvanttori/huukki`)
-  // You can put both relative and absolute paths here (e.g. "../" and "/home/user/my-folder")
-  "folder": "./",
-
-  // only execute commands if push was to 'master' branch
-  "branch": "master",
-
-  // Secret value configured in the GitHub webhook (use "" to disable validation)
-  "secret": "changeme",
-
-  // commands to execute (in order) when a webhook is received
-  "commands": ["git pull"]
-}
+# Configuration for each branch you want to run commands for.
+# For each branch, you must define the 'commands' field. 'dir' is optional and defaults to './'
+branch:
+  master:
+    dir: ./ # optional
+    commands:
+      - git pull
 ```
 
-You can override individual settings by creating a JSON file called `huukki.config.json` in the folder where you run the npx command.
+You can customize the huukki server by creating a file called `huukki.yaml` in the same directory where you run the huukki server or command.
 
-The file should contain the fields that you want to override, fields that you leave out will use the values defined in the default config above.
+You can define different directories and commands for each branch, for example:
 
-```jsonc
-// huukki.config.json
-{
-  "folder": "/home/my-user/my-repo",
-  "secret": "ultra-secret-secret",
-  "commands": ["git pull", "npm i", "npm run build", "pm2 reload all"]
-}
-```
+```yaml
+# huukki.yaml
 
-The resulting config would look like this:
+server:
+  port: 8080 # required
+  route: / # required
+  secret: changeme # optional
 
-```jsonc
-{
-  "port": 8080,
-  "route": "/webhook",
-  "folder": "/home/my-user/my-repo",
-  "branch": "master",
-  "secret": "ultra-secret-secret",
-  "commands": ["git pull", "npm i", "npm run build", "pm2 reload all"]
-}
+branch:
+  # different set of commands for production
+  master:
+    dir: ./
+    commands:
+      - git pull
+      - npm ci --only=production
+      - npm run build
+      - npm start
+
+  # different folder and/or commands when pushing to 'development' branch
+  development:
+    dir: ./path/to/some/folder
+    commands:
+      - git pull
+      - npm i
+      - npm run build
+      - npm run dev
+
+  some-branch:
+    commands:
+      - echo "this is a test"
 ```
 
 ### GitHub webhook
 
 The GitHub webhook **must** have `application/json` as its content type. With the configurations defined above, and an example IP of `localhost`, the GitHub webhook URL should look like this: `http://localhost:8080/webhook`, and the webhook's secret should be `ultra-secret-secret`.
 
-## Notes
+## Important notes
 
-- If you're running `git pull` as a command, make sure that git has the credentials saved so that it won't ask for them every time. You can make Git store the username and password with the following command: `git config --global credential.helper store`. Note that you'll need to input the credentials once after this command to save them.
+- If you're running `git pull` as one of the commands, make sure that git has the credentials saved so that it won't try to ask for them every time. You can make Git store the username and password with the following command: `git config --global credential.helper store`. Note that you'll need to input the credentials once after this command to save them.
 
-- you cannot change directory within the commands currently, because each command is executed as a separate process.
+- Changing directories does not transfer from one command to the next, because each command is executed as a separate process. This means that the following won't work as expected:
+
+```yaml
+# ... rest of the config
+some-branch:
+  dir: /
+  commands:
+    - cd ./some/folder
+    - pwd # this will print '/' and not '/some/folder'
+```
 
 ## Development
 
